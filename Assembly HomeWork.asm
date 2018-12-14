@@ -11,19 +11,19 @@ Idle:
 	INC BL		; Increment BL
 	CMP AL, 0D	; Compare -- was the Enter key pressed? 
 	JNZ Idle	; If No then Jump back IF Yes then end.
-	MOV CL, C0	; start of Virtual Display
-	MOV AL, A0      ; stored character pointer to AL
+	MOV CL, C0	; Start of Virtual Display
+	MOV AL, A0      ; Stored character pointer to AL
 
 
 ; ===== If enter is pressed it will display the stored characters  =============================
 
 Display:   
-	MOV DL, [AL]	; get stored character
-        MOV [CL], DL    ; put on Virtual Display
-        INC CL          ; next char. on Virtual Display
-        INC AL          ; next stored character
-        CMP CL, 00      ; end of Virtual Display memory?
-	JNZ Idle        ; no, loop
+	MOV DL, [AL]	; Get stored character
+        MOV [CL], DL	; Put on Virtual Display
+        INC CL          ; Next char. on Virtual Display
+        INC AL          ; Next stored character
+        CMP CL, 00      ; End of Virtual Display memory?
+	JNZ Display	; No, loop
 
  END
 
